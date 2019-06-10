@@ -15,8 +15,8 @@ module FeaturesService
       features.each do |f|
         begin
           feat = Feature.new(type: 'Feature')
-          feat.build_property(external_id: f['id'], magnitude: f['properties']['mag'], time: f['properties']['time'], mag_type: f['properties']['magType'], external_url: f['properties']['url'], feature_id: feat.id)
-          feat.property.build_coordinate(longitude: f['geometry']['coordinates'][0], latitude: f['geometry']['coordinates'][1], attribute_id:feat.property.id)
+          feat.build_property(external_id: f['id'], magnitude: f['properties']['mag'].to_f, time: f['properties']['time'], mag_type: f['properties']['magType'], external_url: f['properties']['url'], feature_id: feat.id)
+          feat.property.build_coordinate(longitude: f['geometry']['coordinates'][0].to_f, latitude: f['geometry']['coordinates'][1].to_f, attribute_id:feat.property.id)
           feat.save
         end
       end

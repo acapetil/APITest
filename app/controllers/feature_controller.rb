@@ -6,7 +6,7 @@ class FeatureController < ApplicationController
     feats_filter_mag_type= Feature.filter_mag_type(params[:filters])
     feats=feats_filter_mag_type.feature_pagination(page,page_limit)
 
-    feature_filter_hash = feats.map {|feat| { id: feat.id, type:'feature',attributes:{ external_id:feat.property.external_id, magnitude:feat.property.magnitude, time:feat.property.time, mag_type:feat.property.mag_type, external_url:feat.property.external_url, coordinates:{longitude:feat.property.coordinate.longitude, latitude:feat.property.coordinate.latitude }}} }
+    feature_filter_hash = feats.map {|feat| { id: feat.id, type:'feature',attributes:{ external_id:feat.property.external_id, magnitude:feat.property.magnitude.to_f, time:feat.property.time, mag_type:feat.property.mag_type, external_url:feat.property.external_url, coordinates:{longitude:feat.property.coordinate.longitude.to_f, latitude:feat.property.coordinate.latitude.to_f }}} }
     @features_list_hash={ data: feature_filter_hash, pagination:{ current_page: page, total: feats_filter_mag_type.count, per_page: page_limit }}
     
     render json: @features_list_hash
