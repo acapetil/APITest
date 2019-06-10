@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post 'comment/create' => 'comment#create'
+
   get 'feature/features_list' => 'feature#features_list'
   
   # The priority is based upon order of creation: first created -> highest priority.

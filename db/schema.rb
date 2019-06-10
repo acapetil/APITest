@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190604032902) do
+ActiveRecord::Schema.define(version: 20190609190726) do
 
   create_table "attributes", force: :cascade do |t|
     t.string   "external_id"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20190604032902) do
     t.integer  "feature_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "text"
+    t.integer  "feature_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "coordinates", force: :cascade do |t|
